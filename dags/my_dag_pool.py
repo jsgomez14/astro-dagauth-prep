@@ -45,6 +45,6 @@ def my_dag_pool():
             time.sleep(5)
             return {"partner_name": partner_name, "partner_path": partner_path}
         process_tasks(extract(details['name'], details['path']))
-    # Downstream, upstream, absolut priorities
+    # Downstream, upstream, absolute priorities
 my_dag_pool()
 
