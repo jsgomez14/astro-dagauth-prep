@@ -1,0 +1,16 @@
+Airflow Level Parameters:
+
+parallelism: 32 default. Execute at most 32 tasks at the same time. Entire Airflow instance.
+dag_concurrency: 16 default. Defines the number of tasks you can execute at the same time in a DAG. Include all dag runs. Entire Airflow instance.
+max_active_runs_per_dag: 16 default. Defines the number of dag runs that can be running at the same time. Entire Airflow instance.
+
+
+Dag Level Parameters:
+
+concurrency: execute at most N tasks all of the dag runs of given dag
+max_active_runs: execute at most N "dag runs" of the given dag.
+
+Task Level Parameters:
+
+task_concurrency: execute at most N tasks of the given task at the same time across all dag runs.
+pool: assign a pool to a task. A pool is a way to limit the execution of a task.
