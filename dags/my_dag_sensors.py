@@ -43,6 +43,12 @@ def _retry_callback(context):
     print(context)
     print("Retry")
 
+def _sla_miss_callback(dag, task_list, blocking_task_list, slas, blocking_tis):
+    print(task_list)
+    print(blocking_tis)
+    print(slas)
+    print("SLA Miss")
+
 default_args = {
     "start_date": datetime(2023, 1, 1),
 }
@@ -53,7 +59,8 @@ default_args = {
     catchup=False,
     dagrun_timeout=timedelta(minutes=10), 
     tags=["DE"],
-    max_active_runs=1
+    max_active_runs=1,
+    sla_miss_callback=_sla_miss_callback # Only available for DAG level.
     )
 def my_dag_sensors():
 
@@ -79,6 +86,7 @@ def my_dag_sensors():
             on_retry_callback=_retry_callback,
             retries=3,
             retry_delay=timedelta(minutes=5),
+            sla = timedelta(minutes=5),
             # retry_exponential_backoff=True # Retries with incremental intervals. For API calls for example.
             # max_retry_delay=timedelta(minutes=15), # Maximum time for exponential backoff.
             ) # Task level callbacks.

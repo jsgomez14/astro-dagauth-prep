@@ -13,7 +13,7 @@ class CustomPostgresOperator(PostgresOperator):
     "my_dag",
     description = "DAG in charge of processing customer data.",
     start_date = datetime(2021, 1, 1),
-    schedule = "@once",
+    schedule = "@daily",
     dagrun_timeout = timedelta(minutes = 10),
     tags = ["data_engineering"],
     catchup = False,
