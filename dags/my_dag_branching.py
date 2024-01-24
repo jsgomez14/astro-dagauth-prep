@@ -49,7 +49,6 @@ def my_dag_branching():
     # trigger_rule = all_failed, all upstream tasks failed.
     # trigger_rule = one_failed, one upstream task failed.
     # trigger_rule = one_success, one upstream task success.
-    # trigger_rule = none_failed, upstream tasks either skipped or succeded.
     # trigger_rule = none_failed, upstream tasks either skipped or succeded. Won't be triggered if one of the upstream tasks failed.
     # trigger_rule = none_failed_or_skipped, at least one of upstream tasks succeded and all the upstream tasks were executed.
     # trigger_rule = dummy, task gets triggered right away.

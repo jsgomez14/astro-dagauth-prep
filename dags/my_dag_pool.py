@@ -40,7 +40,9 @@ def my_dag_pool():
         @task.python(task_id=f"extract_{partner}",do_xcom_push=False,
             pool='partner_pool',
             pool_slots=1,
-            priority_weight = details['priority']) # Only works for tasks within the same pool.
+            priority_weight = details['priority'], # Only works for tasks within the same pool.
+            # depends_on_past = True, If last execution failed, this execution will fail.
+            ) 
         def extract(partner_name, partner_path) -> Dict[str, str]:
             time.sleep(5)
             return {"partner_name": partner_name, "partner_path": partner_path}
